@@ -1,9 +1,10 @@
 package org.exemple.dao;
 
 import org.exemple.model.User;
-import org.exemple.db.Db;
 
 import java.sql.*;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class UserDaoImpl implements UserDao {
     private static final String URL = "jdbc:postgresql://localhost:5434/postgres";
@@ -75,5 +76,35 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public User findById(int id) {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM user_auth WHERE id = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("mail"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Collection<Integer> findAllIds() {
+        var result = new HashSet<Integer>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+            PreparedStatement ps = conn.prepareStatement("SELECT id FROM user_auth");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               result.add(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
