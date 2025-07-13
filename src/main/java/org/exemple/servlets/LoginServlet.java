@@ -11,18 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.exemple.utils.Passwords;
-import org.exemple.utils.Tokens;
 
 public class LoginServlet extends HttpServlet {
-
-    private final Passwords passwords;
-    private final Tokens tokens;
-
-    public LoginServlet(Passwords passwords, Tokens tokens) {
-        this.passwords = passwords;
-        this.tokens = tokens;
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

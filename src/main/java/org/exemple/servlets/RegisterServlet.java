@@ -10,17 +10,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.exemple.utils.Passwords;
-import org.exemple.utils.Tokens;
 
 
 public class RegisterServlet extends HttpServlet {
-    private final Passwords passwords;
-    private final Tokens tokens;
     private final UserRegService userRegService;
 
-    public RegisterServlet(Passwords passwords, Tokens tokens, UserRegService userRegService) {
-        this.passwords = passwords;
-        this.tokens = tokens;
+    public RegisterServlet(UserRegService userRegService) {
         this.userRegService = userRegService;
     }
 

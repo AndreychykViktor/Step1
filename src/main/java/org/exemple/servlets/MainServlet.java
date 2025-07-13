@@ -30,12 +30,14 @@ public class MainServlet extends HttpServlet {
         if ("like".equals(action)) {
             User chosenUser = (User) req.getSession().getAttribute("chosenUser");
             if (chosenUser != null) {
-                int clientId = Integer.parseInt(req.getCookies()[0].getValue());
+                var clientId = Stream.of(req.getCookies()).filter(cookie -> cookie.getName().equals("J_ID")).findFirst().map(cookie -> Integer.parseInt(cookie.getValue())).orElse(null);
                 likeDao.create(clientId, chosenUser.getId());
             } else {
                 resp.getWriter().println("<h1>Нет выбранного пользователя</h1>");
             }
 
+            resp.sendRedirect("/main");
+        } else if ("dislike".equals(action)) {
             resp.sendRedirect("/main");
         } else {
             resp.getWriter().println("<h1>Неизвестное действие</h1>");

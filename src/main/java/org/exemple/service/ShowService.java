@@ -5,7 +5,9 @@ import org.exemple.dao.LikeDaoImpl;
 import org.exemple.dao.UserDaoImpl;
 import org.exemple.model.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -21,11 +23,11 @@ public class ShowService {
     }
 
     public Optional<User> getNextUser(){
-        var allUserIds = userDao.findAllIds();
-        var likedUserIds = likeDao.findAllUsersIdById(clientId);
+        HashSet<Integer> allUserIds = new HashSet<>(userDao.findAllIds());
+        HashSet<Integer> likedUserIds = new HashSet<>(likeDao.findAllUsersIdById(clientId));
 
         List<Integer> notLikedUserIds = allUserIds.stream()
-                .filter(id -> !likedUserIds.contains(id))
+                .filter(userId -> !likedUserIds.contains(userId) && !Objects.equals(userId, clientId))
                 .toList();
 
         if (notLikedUserIds.isEmpty()) return Optional.empty();
