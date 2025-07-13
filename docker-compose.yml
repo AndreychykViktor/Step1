@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: 'postgres777'
+      POSTGRES_PASSWORD: 'pg123456'
+    ports:
+      - '5434:5432'
+    container_name: postgres_db
