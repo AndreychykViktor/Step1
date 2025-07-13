@@ -5,17 +5,10 @@ public class User {
     private final String name;
     private final Integer age;
     private final String bio;
-    private String login;
-    private String password;
-    private String mail;
+    private final String login;
+    private final String  password;
+    private final String mail;
 
-
-    public User(int id, String login, String password, String mail) {
-        this(id, null, null, null, login, password, mail);
-    }
-    public User(int id, String name, Integer age, String bio) {
-        this(id, name, age, bio, null, null, null);
-    }
     public User(int id, String name, Integer age, String bio, String login, String password, String mail) {
         this.id = id;
         this.name = name;
@@ -41,20 +34,8 @@ public class User {
     public String getLogin() {
         return login;
     }
-    public void setLogin(String login) {
-        this.login = login;
-    }
     public String getPassword() {
         return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getUserId() {
-        return mail;
-    }
-    public void setUserId(String userId) {
-        this.mail = userId;
     }
 
     @Override

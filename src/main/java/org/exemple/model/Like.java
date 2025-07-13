@@ -2,13 +2,13 @@ package org.exemple.model;
 
 public class Like {
     private final int id;
+    private final int clientId;
     private final int userId;
-    private final int postId;
 
-    public Like(int id, int userId, int postId) {
+    public Like(int id, int clientId, int userId) {
         this.id = id;
+        this.clientId = clientId;
         this.userId = userId;
-        this.postId = postId;
     }
 
     public int getId() {
@@ -19,8 +19,8 @@ public class Like {
         return userId;
     }
 
-    public int getPostId() {
-        return postId;
+    public int getClientId() {
+        return clientId;
     }
 
 }

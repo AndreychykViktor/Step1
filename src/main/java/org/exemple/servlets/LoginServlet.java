@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 
         if (user.getPassword().equals(password)) {
             // Пароль верный — вход и редирект на главную
-            Cookie cookie = new Cookie("J_ID", user.getUserId());
+            Cookie cookie = new Cookie("J_ID", "" + user.getId());
             cookie.setMaxAge(60 * 60 * 24 * 30);
             resp.addCookie(cookie);
             resp.sendRedirect("/main");

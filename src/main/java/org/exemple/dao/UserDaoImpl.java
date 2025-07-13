@@ -18,7 +18,15 @@ public class UserDaoImpl implements UserDao {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("mail"));
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("bio"),
+                        rs.getString("login"),
+                        rs.getString("password"),
+                        rs.getString("mail")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,7 +65,15 @@ public class UserDaoImpl implements UserDao {
             ps.setString(1, mail);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("mail"));
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("bio"),
+                        rs.getString("login"),
+                        rs.getString("password"),
+                        rs.getString("mail")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,7 +101,15 @@ public class UserDaoImpl implements UserDao {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("mail"));
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("bio"),
+                        rs.getString("login"),
+                        rs.getString("password"),
+                        rs.getString("mail")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
